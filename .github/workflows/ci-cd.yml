@@ -28,8 +28,10 @@ jobs:
         run: flake8 app tests
 
       - name: Run tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}  # <-- Isso aqui adiciona o diretório do projeto ao PYTHONPATH
         run: pytest
-
+        
   deploy:
     needs: build-and-test
     runs-on: ubuntu-latest
